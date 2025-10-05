@@ -17,7 +17,7 @@ public class BoyerMooreMajority {
         int count = 0;
 
         for (int num : arr) {
-            tracker.incrementAccess(); // access to array element
+            tracker.incrementAccess();
             if (count == 0) {
                 candidate = num;
                 count = 1;
