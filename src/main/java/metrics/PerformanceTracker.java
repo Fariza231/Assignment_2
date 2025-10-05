@@ -1,11 +1,31 @@
 package metrics;
 
 public class PerformanceTracker {
+    private int comparisons = 0;
+    private int accesses = 0;
 
-    public static long measureExecutionTime(Runnable task) {
-        long start = System.nanoTime();
-        task.run();
-        long end = System.nanoTime();
-        return (end - start) / 1_000_000;
+    public void incrementComparison() {
+        comparisons++;
+    }
+
+    public void incrementAccess() {
+        accesses++;
+    }
+
+    public int getComparisons() {
+        return comparisons;
+    }
+
+    public int getAccesses() {
+        return accesses;
+    }
+
+    public void reset() {
+        comparisons = 0;
+        accesses = 0;
+    }
+
+    public void printMetrics() {
+        System.out.printf("Comparisons: %d, Array Accesses: %d%n", comparisons, accesses);
     }
 }

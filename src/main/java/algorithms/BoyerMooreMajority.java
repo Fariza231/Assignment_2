@@ -1,33 +1,47 @@
 package algorithms;
+
+import metrics.PerformanceTracker;
+
 public class BoyerMooreMajority {
+    private final PerformanceTracker tracker;
 
-    public static int findMajority(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
+    public BoyerMooreMajority(PerformanceTracker tracker) {
+        this.tracker = tracker;
+    }
 
-        int candidate = nums[0];
-        int count = 1;
+    public int findMajorityElement(int[] arr) {
+        if (arr == null || arr.length == 0)
+            throw new IllegalArgumentException("Array cannot be null or empty.");
 
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == candidate) {
+        int candidate = -1;
+        int count = 0;
+
+        for (int num : arr) {
+            tracker.incrementAccess(); // access to array element
+            if (count == 0) {
+                candidate = num;
+                count = 1;
+            } else if (num == candidate) {
                 count++;
             } else {
                 count--;
-                if (count == 0) {
-                    candidate = nums[i];
-                    count = 1;
-                }
             }
+            tracker.incrementComparison();
         }
 
-        count = 0;
-        for (int num : nums) {
+        int occurrence = 0;
+        for (int num : arr) {
+            tracker.incrementAccess();
             if (num == candidate) {
-                count++;
+                occurrence++;
+                tracker.incrementComparison();
             }
         }
 
-        return (count > nums.length / 2) ? candidate : -1;
+        if (occurrence > arr.length / 2) {
+            return candidate;
+        } else {
+            throw new RuntimeException("No majority element found.");
+        }
     }
 }
