@@ -77,9 +77,10 @@ Sample benchmark results:
 ---
 
 ## Conclusion
-Kadane’s algorithm implementation is correct, efficient, and benchmark-ready. It achieves linear
-time and constant space complexity, confirmed both theoretically and empirically. Suggested
-improvements are micro-level: encapsulating performance tracker counters, caching array
-elements, and adding property-based tests. With these refinements and empirical validation, the
+Kadane’s algorithm implementation is correct, efficient, and benchmark-ready. It achieves linear 
+time and constant space complexity, confirmed both theoretically and empirically. Suggested 
+improvements are micro-level: encapsulating performance tracker counters, caching array 
+elements, and adding property-based tests. With these refinements and empirical validation, the 
 implementation fully satisfies assignment requirements.
+
 ---
